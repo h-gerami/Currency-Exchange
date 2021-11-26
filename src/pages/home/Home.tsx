@@ -47,8 +47,14 @@ export interface HomePageType {
   set_err: (v: string) => void;
 }
 
+export enum Cnames {
+  EUR = 'EUR',
+  USD = 'USD',
+  GBP = 'GBP',
+}
+export const cc: {[key: string]: Cnames} = Cnames;
+
 function Home(props: HomePageType) {
-  // eslint-disable-next-line no-shadow
   const {
     update_wallet,
     err,
@@ -121,15 +127,11 @@ function Home(props: HomePageType) {
   };
 
   useEffect(() => {
-    if (!isSellInputActive) return;
-    let total: number = 0;
-    if (selectedCurrencyToSell.name === 'USD') {
-      total = wallet.USD.total;
-    } else if (selectedCurrencyToSell.name === 'EUR') {
-      total = wallet.EUR.total;
-    } else {
-      total = wallet.GBP.total;
+    if (!isSellInputActive) {
+      return;
     }
+    let total: number = 0;
+    total = wallet[cc[selectedCurrencyToSell.name]].total;
     if (parseInt(valueToSell, 10) > total) {
       setSellInputError(true);
     } else {
@@ -151,21 +153,18 @@ function Home(props: HomePageType) {
     selectedCurrencyToSell,
     selectedCurrencyToSell.name,
     valueToSell,
+    wallet,
     wallet.EUR.total,
     wallet.GBP.total,
     wallet.USD.total,
   ]);
 
   useEffect(() => {
-    if (!isBuyInputActive) return;
-    let total: number = 0;
-    if (selectedCurrencyToSell.name === 'USD') {
-      total = wallet.USD.total;
-    } else if (selectedCurrencyToSell.name === 'EUR') {
-      total = wallet.EUR.total;
-    } else {
-      total = wallet.GBP.total;
+    if (!isBuyInputActive) {
+      return;
     }
+    let total: number = 0;
+    total = wallet[cc[selectedCurrencyToSell.name]].total;
     let ex = convert(
       valueToBuy ? parseInt(valueToBuy, 10) : 0,
       rateReverseReturner(selectedCurrencyToSell, selectedCurrencyToBuy, rates),
@@ -187,6 +186,7 @@ function Home(props: HomePageType) {
     selectedCurrencyToSell.name,
     valueToBuy,
     valueToSell,
+    wallet,
     wallet.EUR.total,
     wallet.GBP.total,
     wallet.USD.total,
@@ -210,20 +210,10 @@ function Home(props: HomePageType) {
       let deCrease = parseFloat(valueToSell);
       let inCrease = parseFloat(valueToBuy);
       let updatedWallet = {...wallet};
-      if (selectedCurrencyToSell.name === 'USD') {
-        updatedWallet.USD.total = updatedWallet.USD.total - deCrease;
-      } else if (selectedCurrencyToSell.name === 'EUR') {
-        updatedWallet.EUR.total = updatedWallet.EUR.total - deCrease;
-      } else {
-        updatedWallet.GBP.total = updatedWallet.GBP.total - deCrease;
-      }
-      if (selectedCurrencyToBuy.name === 'USD') {
-        updatedWallet.USD.total = updatedWallet.USD.total + inCrease;
-      } else if (selectedCurrencyToBuy.name === 'EUR') {
-        updatedWallet.EUR.total = updatedWallet.EUR.total + inCrease;
-      } else {
-        updatedWallet.GBP.total = updatedWallet.GBP.total + inCrease;
-      }
+      updatedWallet[cc[selectedCurrencyToSell.name]].total =
+        updatedWallet[cc[selectedCurrencyToSell.name]].total - deCrease;
+      updatedWallet[cc[selectedCurrencyToBuy.name]].total =
+        updatedWallet[cc[selectedCurrencyToBuy.name]].total + inCrease;
       setValueToSell('');
       setValueToBuy('');
       update_wallet(updatedWallet);

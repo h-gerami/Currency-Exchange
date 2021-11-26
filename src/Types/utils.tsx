@@ -1,13 +1,12 @@
 import {currencyType} from './types';
-
+export enum Symbols {
+  EUR = '€',
+  USD = '$',
+  GBP = '£',
+}
 export const currencyPrefixReturner = (currency: currencyType) => {
-  if (currency.name === 'EUR') {
-    return '€';
-  } else if (currency.name === 'USD') {
-    return '$';
-  } else {
-    return '£';
-  }
+  let cc: {[key: string]: Symbols} = Symbols;
+  return cc[currency.name];
 };
 
 export const rateReturner = (
@@ -18,13 +17,7 @@ export const rateReturner = (
   if (currencyToSell === currencyToBuy) {
     return 1;
   } else {
-    if (currencyToBuy.name === 'USD') {
-      return rates.USD;
-    } else if (currencyToBuy.name === 'EUR') {
-      return rates.EUR;
-    } else {
-      return rates.GBP;
-    }
+    return parseFloat(rates[currencyToBuy.name]);
   }
 };
 
@@ -36,16 +29,10 @@ export const rateReverseReturner = (
   if (currencyToSell === currencyToBuy) {
     return 1;
   } else {
-    if (currencyToBuy.name === 'USD') {
-      return 1 / rates.USD;
-    } else if (currencyToBuy.name === 'EUR') {
-      return 1 / rates.EUR;
-    } else {
-      return 1 / rates.GBP;
-    }
+    return 1 / parseFloat(rates[currencyToBuy.name]);
   }
 };
 
-export const convert = (cr1: number, convertRate: any) => {
-  return (cr1 * convertRate).toFixed(4);
+export const convert = (cr1: number, convertRate: any): number => {
+  return parseFloat((cr1 * convertRate).toFixed(4));
 };

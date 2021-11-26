@@ -25,15 +25,10 @@ const ExchangeButton = (props: ExchangeButtonType) => {
     if (currencyToSell === currencyToBuy) {
       return 1;
     } else {
-      if (currencyToBuy.name === 'USD') {
-        return rates.USD;
-      } else if (currencyToBuy.name === 'EUR') {
-        return rates.EUR;
-      } else {
-        return rates.GBP;
-      }
+      return rates[currencyToBuy.name];
     }
-  }, [currencyToBuy, currencyToSell, rates.EUR, rates.GBP, rates.USD]);
+  }, [currencyToBuy, currencyToSell, rates]);
+
   return (
     <TouchableOpacity disabled={error} onPress={onPress}>
       <View

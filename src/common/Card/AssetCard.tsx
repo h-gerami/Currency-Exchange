@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {CCFont, CColor, wp} from '../../styles/CustomStyle';
 import {walletBoardItemType} from '../../Types/types';
+import {currencyPrefixReturner} from '../../Types/utils';
 
 export interface AssetCardType {
   selected?: boolean;
@@ -35,21 +36,18 @@ const AssetCard = (props: walletBoardItemType & AssetCardType) => {
       );
     }
   };
-  const unitReturner = () => {
-    if (currency.name === 'EUR') {
-      return '€ ';
-    } else if (currency.name === 'USD') {
-      return '$ ';
-    } else {
-      return '£ ';
-    }
-  };
+
   return (
     <View style={[styles.container, style, selected && styles.selected]}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.iconWrapper}>{imgReturner()}</View>
         <Text style={styles.title}>{currency?.name}</Text>
-        <Text style={styles.total}>{unitReturner() + total.toFixed(2)}</Text>
+        <Text style={styles.total}>
+          {currencyPrefixReturner({
+            id: currency.id,
+            name: currency.name,
+          }) + total.toFixed(2)}
+        </Text>
       </TouchableOpacity>
     </View>
   );

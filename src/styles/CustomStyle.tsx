@@ -12,7 +12,7 @@ const CColor = {
   black: '#1C3041',
   gray: '#959595',
   blue: '#5AA9E6',
-  red: '#FE4A49',
+  red: 'red',
   white: '#fff',
   bgColor: '#ededed',
   lightGray: '#E5E5E5',

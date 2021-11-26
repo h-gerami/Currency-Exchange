@@ -10,6 +10,7 @@ export interface walletBoardItemType {
   currency: currencyType;
   total: number;
 }
+
 export interface walletType {
   USD: walletBoardItemType;
   EUR: walletBoardItemType;
