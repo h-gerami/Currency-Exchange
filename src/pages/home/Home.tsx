@@ -275,7 +275,10 @@ function Home(props: HomePageType) {
               icon="plus"
               placeHolder="Enter Amount"
               value={valueToBuy}
-              onFocus={() => setIsBuyInputActive(true)}
+              onFocus={() => {
+                setValueToBuy('');
+                setIsBuyInputActive(true);
+              }}
               onBlur={() => setIsBuyInputActive(false)}
               onChangeText={t => handleToBuyChange(t)}
               style={{marginTop: wp(2)}}
@@ -294,7 +297,10 @@ function Home(props: HomePageType) {
               icon="minus"
               placeHolder="Enter Amount"
               value={valueToSell}
-              onFocus={() => setIsSellInputActive(true)}
+              onFocus={() => {
+                setValueToSell('');
+                setIsSellInputActive(true);
+              }}
               onBlur={() => setIsSellInputActive(false)}
               onChangeText={t => handleToSellChange(t)}
               style={{marginTop: wp(2)}}

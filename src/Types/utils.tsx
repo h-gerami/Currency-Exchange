@@ -47,6 +47,5 @@ export const rateReverseReturner = (
 };
 
 export const convert = (cr1: number, convertRate: any) => {
-  console.log(cr1, convertRate);
-  return cr1 * convertRate;
+  return (cr1 * convertRate).toFixed(4);
 };
