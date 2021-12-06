@@ -16,9 +16,9 @@ You have 3 Currencies (GBP, EUR, USD) that can be convert to each other by onlin
 - Icon: react-native-vector-icon
 - DB: @react-native-community/async-storage(redux-persist)
 # Screen Shots
-Landscape Mode             | 
-:-------------------------:|
-![](https://user-images.githubusercontent.com/30626411/144851633-60e1e792-392b-4ec4-bb11-5cd39cbf1479.png)  |
+Home Page             |  Selecting Currency
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/30626411/144851633-60e1e792-392b-4ec4-bb11-5cd39cbf1479.png)|![](https://user-images.githubusercontent.com/30626411/144851920-ab322581-a38b-4fea-a100-a50a19ccd8ec.png)
 # Installation
 - Clone the project
 - Go to root folder
