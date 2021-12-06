@@ -18,7 +18,7 @@ You have 3 Currencies (GBP, EUR, USD) that can be convert to each other by onlin
 # Screen Shots
 Landscape Mode             | 
 :-------------------------:|
-![](https://user-images.githubusercontent.com/30626411/144562757-c0cd4090-a40d-46e1-876f-b4e59ddb069e.png)  |
+![](https://user-images.githubusercontent.com/30626411/144851633-60e1e792-392b-4ec4-bb11-5cd39cbf1479.png)  |
 # Installation
 - Clone the project
 - Go to root folder
