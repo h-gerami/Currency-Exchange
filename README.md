@@ -1,5 +1,4 @@
 # Currency-Exchange
-it is a technical test for Xcoins.com
 You have 3 Currencies (GBP, EUR, USD) that can be convert to each other by onlin rate :)
 # Features
 - Created by Typescript
